@@ -13,6 +13,7 @@ class CategoryViewSet(ModelViewSet):
     serializer_class = CategorySerializer
     pagination_class = CustomPageNumberPagination
     permission_classes = [permissions.IsAdminUser]
+    lookup_field = 'pk'
 
 
 
@@ -22,3 +23,5 @@ class CourseViewSet(ModelViewSet):
     serializer_class = CourseSerializers
     pagination_class = CustomPageNumberPagination
     permission_classes = [permissions.IsAdminUser]
+    lookup_field = 'pk'
+

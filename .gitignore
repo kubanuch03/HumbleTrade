@@ -10,10 +10,7 @@ pythonenv*
 pyvenv.cfg
 
 .idea
-# Игнорировать все файлы миграции Django
-# **/migrations/
-# Игнорировать файлы базы данных SQLite
-# *.sqlite3
+
 
 # Если используется PostgreSQL, можете добавить следующую строку
 *.dump
