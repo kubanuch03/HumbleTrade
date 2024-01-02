@@ -14,8 +14,7 @@ class Unit(models.Model):
 class Lesson(models.Model):
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
     title = models.CharField(max_length=250)
-    image = models.ImageField()
-    lesson = models.FileField()
+    image = models.ImageField() 
     instructor = models.ForeignKey(Client, on_delete=models.PROTECT)
 
     def __str__(self) -> str:
@@ -34,7 +33,6 @@ class StrategyLesson(models.Model):
     course = models.ForeignKey(StrategyCourse, on_delete=models.CASCADE)
     title = models.CharField(max_length=250)
     image = models.ImageField()
-    lesson = models.FileField()
     instructor = models.ForeignKey(Client, on_delete=models.PROTECT)
 
     def __str__(self) -> str:

@@ -175,6 +175,4 @@ SIMPLE_JWT = {
 }
 
 
-#wwe
-
 
