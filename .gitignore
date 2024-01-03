@@ -14,7 +14,7 @@ pyvenv.cfg
 
 # Если используется PostgreSQL, можете добавить следующую строку
 *.dump
-
+*.sqlite3
 *.log
 
 media
