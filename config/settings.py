@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "drf_spectacular",
     "corsheaders",
     "drf_yasg",
+    "django_filters",
     #app
     'app_users',
     'app_clients',
@@ -54,6 +55,8 @@ INSTALLED_APPS = [
     'app_comments',
     'app_resourse_center',
     'app_trader_academy',
+    'app_blog',
+    'app_comment',
     
 ]
 
