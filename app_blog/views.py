@@ -22,13 +22,15 @@ class PostListCreateView(generics.ListCreateAPIView):
 class PostRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    permission_classes = [IsModeratorOrReadOnly]
+    permission_classes = [permissions.IsAdminUser]
 
     def get(self, request):
         # Your implementation here
         return Response("Success")
     
-class PostListListCiew(generics.ListAPIView):
+
+    
+class PostListListView(generics.ListAPIView):
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['hashtags__name']
     queryset = Post_list.objects.all()
@@ -43,7 +45,7 @@ class PostListListCiew(generics.ListAPIView):
 class PostListRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post_list.objects.all()
     serializer_class = PostListSerializer
-    permission_classes = [IsModeratorOrReadOnly, permissions.IsAdminUser]
+    permission_classes = [permissions.IsAdminUser]
 
     def get(self, request):
         # Your implementation here
@@ -69,7 +71,7 @@ class ModuleListView(generics.ListAPIView):
 class ModuleRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Module.objects.all()
     serializer_class = ModuleSerializer
-    permission_classes = [IsModeratorOrReadOnly]
+    permission_classes = [permissions.IsAdminUser]
 
     def get(self, request):
         # Your implementation here
