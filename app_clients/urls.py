@@ -1,9 +1,5 @@
 from django.urls import path
 from .views import *
-from rest_framework import routers
-
-
-router = routers.DefaultRouter()
 
 
 app_name = "clients"
@@ -16,4 +12,4 @@ urlpatterns = [
     path(
         "confirm-email/<str:token>/", ConfirmEmailView.as_view(), name="confirm_email"
     ),
-] + router.urls
+]

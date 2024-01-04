@@ -7,10 +7,7 @@ from django.contrib.auth import login, authenticate
 
 from .models import Client
 from .permissions import IsClientOrAdmin
-from .serializers import (
-    ClientSerializer,
-    LoginClientSerializer,
-)
+from .serializers import ClientSerializer, LoginClientSerializer, ConfirmEmailSerializer
 
 
 class LoginClientView(generics.GenericAPIView):
@@ -60,6 +57,8 @@ class LoginClientView(generics.GenericAPIView):
 
 
 class ConfirmEmailView(generics.GenericAPIView):
+    serializer_class = ConfirmEmailSerializer
+
     @staticmethod
     def get(request, token):
         try:

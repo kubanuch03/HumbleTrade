@@ -5,11 +5,13 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import send_mail
 from django.urls import reverse
 from django.utils.crypto import get_random_string
-from django.contrib.auth import authenticate
 
-from rest_framework.exceptions import AuthenticationFailed
 from rest_framework import serializers
 from .models import Client
+
+
+class ConfirmEmailSerializer(serializers.Serializer):
+    token = serializers.CharField()
 
 
 class ClientSerializer(serializers.ModelSerializer):

@@ -8,7 +8,7 @@ urlpatterns = [
         PostRetrieveUpdateDestroyView.as_view(),
         name="post-retrieve-update-destroy",
     ),
-    path("post_lists/", PostListListView.as_view(), name="post-list-list-create"),
+    path("post_lists/", PostListListCreateView.as_view(), name="post-list-list-create"),
     path(
         "post_lists/<int:pk>/",
         PostListRetrieveUpdateDestroyView.as_view(),

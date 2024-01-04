@@ -19,7 +19,6 @@ router.register(
     StrategyLessonViewSet,
     basename="6 sessistrategy crush course lesson",
 )
-# router.register(r'download/document/<int:pk>/', DownloadDocumentView, basename='downloads-documents')
 
 
 urlpatterns = [
