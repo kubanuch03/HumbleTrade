@@ -1,7 +1,7 @@
 from rest_framework import generics, permissions
 from django.utils import timezone
-from .models import  Subscription
-from .serializers import  SubscriptionSerializer
+from .models import Subscription
+from .serializers import SubscriptionSerializer
 
 
 class SubscriptionView(generics.RetrieveUpdateAPIView):

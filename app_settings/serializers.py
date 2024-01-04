@@ -1,4 +1,3 @@
-
 from decouple import config
 
 from django.contrib.auth.hashers import make_password
@@ -13,6 +12,7 @@ from django.utils.http import urlsafe_base64_decode
 
 from rest_framework import serializers
 from app_clients.models import Client
+
 
 class ClientProfileSerializer(serializers.ModelSerializer):
     class Meta:
@@ -37,9 +37,6 @@ class ClientProfileSerializer(serializers.ModelSerializer):
             "password",
             # "password2"
         ]
-
-
-
 
 
 class ResetPasswordConfirmSerializer(serializers.Serializer):

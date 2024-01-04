@@ -4,7 +4,6 @@ from app_resourse_center.models import Document
 from app_clients.models import Client
 
 
-
 class CommentCourse(models.Model):
     user = models.ForeignKey(Client, on_delete=models.CASCADE)
     post = models.ForeignKey(Courses, on_delete=models.CASCADE)
@@ -12,8 +11,8 @@ class CommentCourse(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.id}'
-    
+        return f"{self.id}"
+
 
 class CommentDocument(models.Model):
     user = models.ForeignKey(Client, on_delete=models.CASCADE)
@@ -22,4 +21,4 @@ class CommentDocument(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.id}'
+        return f"{self.id}"

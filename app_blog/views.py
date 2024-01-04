@@ -9,9 +9,10 @@ from rest_framework import permissions
 
 from django_filters.rest_framework import DjangoFilterBackend
 
+
 class PostListCreateView(generics.ListCreateAPIView):
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['hashtags__name']
+    filterset_fields = ["hashtags__name"]
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = [permissions.IsAdminUser]
@@ -19,6 +20,8 @@ class PostListCreateView(generics.ListCreateAPIView):
     def get(self, request):
         # Your implementation here
         return Response("Success")
+
+
 class PostRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
@@ -27,12 +30,11 @@ class PostRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     def get(self, request):
         # Your implementation here
         return Response("Success")
-    
 
-    
+
 class PostListListView(generics.ListAPIView):
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['hashtags__name']
+    filterset_fields = ["hashtags__name"]
     queryset = Post_list.objects.all()
     serializer_class = PostListSerializer
     pagination_class = CustomPostPagination
@@ -42,6 +44,7 @@ class PostListListView(generics.ListAPIView):
         # Your implementation here
         return Response("Success")
 
+
 class PostListRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post_list.objects.all()
     serializer_class = PostListSerializer
@@ -50,7 +53,6 @@ class PostListRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     def get(self, request):
         # Your implementation here
         return Response("Success")
-    
 
 
 class ModuleListCreateView(generics.ListCreateAPIView):
@@ -61,6 +63,7 @@ class ModuleListCreateView(generics.ListCreateAPIView):
     def get(self, request):
         # Your implementation here
         return Response("Success")
+
 
 class ModuleListView(generics.ListAPIView):
     queryset = Module.objects.all()

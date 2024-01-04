@@ -1,4 +1,3 @@
-
 from decouple import config
 
 from django.contrib.auth.hashers import make_password
@@ -11,7 +10,6 @@ from django.contrib.auth import authenticate
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework import serializers
 from .models import Client
-
 
 
 class ClientSerializer(serializers.ModelSerializer):
@@ -33,6 +31,7 @@ class ClientSerializer(serializers.ModelSerializer):
             "password",
             "password2",
         )
+
     def validate(self, attrs):
         if attrs["password"] != attrs["password2"]:
             raise serializers.ValidationError(
@@ -68,6 +67,7 @@ class ClientSerializer(serializers.ModelSerializer):
 
         return client
 
+
 class LoginClientSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(required=True)
     password = serializers.CharField(write_only=True, required=True)
@@ -75,5 +75,3 @@ class LoginClientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Client
         fields = ("email", "password")
-    
-  

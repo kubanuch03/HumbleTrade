@@ -21,10 +21,9 @@ class CategoryCreateApiView(ListCreateAPIView):
     permission_classes = [permissions.IsAdminUser]
 
 
-
 class CategoryDeleteApiView(APIView):
     permission_classes = [permissions.IsAdminUser]
-    
+
     def get_object(self, pk):
         try:
             return Category.objects.get(pk=pk)
@@ -36,7 +35,7 @@ class CategoryDeleteApiView(APIView):
         instance.delete()
         message = "успешно удалено"
         return Response(str(message), status=status.HTTP_204_NO_CONTENT)
-    
+
 
 class CategoryPutApiView(APIView):
     permission_classes = [permissions.IsAdminUser]
@@ -54,14 +53,13 @@ class CategoryPutApiView(APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        
+
 
 class DocumentCreateApiView(ListCreateAPIView):
     queryset = Document.objects.all()
     serializer_class = DocumentSerializer
     pagination_class = CustomPageNumberPagination
     permission_classes = [permissions.IsAdminUser]
-
 
 
 class DocumentDeleteApiView(APIView):
@@ -98,7 +96,6 @@ class DocumetPutApiView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-
 class DownloadFileView(View):
     def get(self, request, pk):
         document = get_object_or_404(Document, pk=pk)
@@ -107,5 +104,5 @@ class DownloadFileView(View):
         response = FileResponse(document.post, as_attachment=True)
         response["Content-Disposition"] = f"attachment; filename={document.post.name}"
         return response
+
     permission_classes = [permissions.AllowAny]
-    

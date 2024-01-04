@@ -13,7 +13,6 @@ from .serializers import (
 )
 
 
-
 class LoginClientView(generics.GenericAPIView):
     serializer_class = LoginClientSerializer
     permission_classes = [permissions.AllowAny]
@@ -88,7 +87,6 @@ class ConfirmEmailView(generics.GenericAPIView):
             )
 
 
-
 class RegisterClientView(generics.CreateAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
@@ -110,7 +108,6 @@ class RegisterClientView(generics.CreateAPIView):
         )
 
 
-
 class ClientListView(generics.ListAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
@@ -120,12 +117,10 @@ class ClientListView(generics.ListAPIView):
 class ClientUpdateView(generics.RetrieveUpdateAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
-    permission_classes =  [IsClientOrAdmin]
+    permission_classes = [IsClientOrAdmin]
 
 
 class ClientDeleteView(generics.DestroyAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
-    permission_classes =  [permissions.IsAdminUser]
-
-    
+    permission_classes = [permissions.IsAdminUser]

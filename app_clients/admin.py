@@ -24,15 +24,29 @@ class ClientAdmin(admin.ModelAdmin):
                     "full_name",
                     "phone_number",
                     "bio",
-        
-
-                    
                 )
             },
         ),
-         ("Location", {"fields": ("location","address","address_line2","city","state","country","zip","tax_id")}),
-         ("Social Media", {"fields": ("facebook","instogram","twitter")}),
-        ("Permissions", {"fields": ("is_staff","is_client","is_active","created_at")}),
+        (
+            "Location",
+            {
+                "fields": (
+                    "location",
+                    "address",
+                    "address_line2",
+                    "city",
+                    "state",
+                    "country",
+                    "zip",
+                    "tax_id",
+                )
+            },
+        ),
+        ("Social Media", {"fields": ("facebook", "instogram", "twitter")}),
+        (
+            "Permissions",
+            {"fields": ("is_staff", "is_client", "is_active", "created_at")},
+        ),
     )
     add_fieldsets = (
         (

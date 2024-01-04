@@ -15,30 +15,34 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
+from drf_spectacular.views import (
+    SpectacularAPIView,
+    SpectacularRedocView,
+    SpectacularSwaggerView,
+)
 from .yasg import schema_view
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    
-    path("clients/", include('app_clients.urls')),
-    path("settings/", include('app_settings.urls')),
-
-    path('video/library/', include('app_video_library.urls')),
-    path('comments/', include('app_comments.urls')),
-    path("recours/center/", include('app_resourse_center.urls')),
-    path('trader/academy/', include('app_trader_academy.urls')),
-
-    path('blog/', include('app_blog.urls')),
-    path('comment/', include('app_comment.urls')),
-
-   #swagger
-    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
-    path('', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
-    path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
+    path("clients/", include("app_clients.urls")),
+    path("settings/", include("app_settings.urls")),
+    path("video/library/", include("app_video_library.urls")),
+    path("comments/", include("app_comments.urls")),
+    path("recours/center/", include("app_resourse_center.urls")),
+    path("trader/academy/", include("app_trader_academy.urls")),
+    path("blog/", include("app_blog.urls")),
+    path("comment/", include("app_comment.urls")),
+    # swagger
+    path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
+    path("", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"),
+    path(
+        "api/schema/redoc/",
+        SpectacularRedocView.as_view(url_name="schema"),
+        name="redoc",
+    ),
 ]
 
 if settings.DEBUG:

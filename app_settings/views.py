@@ -6,7 +6,7 @@ from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework import generics
 
-from .serializers import ClientProfileSerializer,ResetPasswordConfirmSerializer
+from .serializers import ClientProfileSerializer, ResetPasswordConfirmSerializer
 from .send_email import send_password_reset_email
 from app_clients.serializers import ClientSerializer
 from app_clients.models import Client
@@ -20,15 +20,12 @@ from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 
 
-
-
 class ClientProfileView(RetrieveUpdateAPIView):
     serializer_class = ClientProfileSerializer
     permission_classes = [IsAuthenticated]
 
     def get_object(self):
         return self.request.user
-    
 
 
 class RequestPasswordResetView(APIView):
