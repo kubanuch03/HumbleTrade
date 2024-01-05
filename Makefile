@@ -1,8 +1,15 @@
-.PHONY: migrations runserver
+.PHONY: install migrate createsuperuser runserver # make install
 
-migrations:
-	python3 manage.py makemigrations 
-	python3 manage.py migrate 
+
+install:
+	pip install -r requirement.txt
+
+migrate:
+	python manage.py makemigrations
+	python manage.py migrate
+
+createsuperuser:
+	python manage.py createsuperuser
 
 runserver:
-	python3 manage.py runserver 
+	python manage.py runserver

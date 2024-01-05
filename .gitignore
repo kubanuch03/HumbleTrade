@@ -18,5 +18,5 @@ pyvenv.cfg
 *.log
 
 media
-
+Makefile
 # db.sqlite3-journal
