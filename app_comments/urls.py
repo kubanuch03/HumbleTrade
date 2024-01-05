@@ -4,12 +4,12 @@ from .views import CommentsCourseViewSet, CommentsDocumentViewSet
 
 router = DefaultRouter()
 router.register(
-    r"video/library/course/",
+    r"video/library/course",
     CommentsCourseViewSet,
     basename="comments-video-library-course",
 )
 router.register(
-    r"resourse/center/document/",
+    r"resourse/center/document",
     CommentsDocumentViewSet,
     basename="comments-resourse-center-documents",
 )
