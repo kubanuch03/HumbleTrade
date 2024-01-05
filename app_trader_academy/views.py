@@ -2,11 +2,12 @@ from rest_framework import permissions
 from rest_framework.viewsets import ModelViewSet
 
 from .models import Unit, Lesson, StrategyCourse, StrategyLesson
-from .seriallizer import (CourseSerializer,
+from .seriallizer import (
+    CourseSerializer,
     LessonSerializer,
     StrategyCourseSerializer,
-    StrategyLessonSerializer
- )
+    StrategyLessonSerializer,
+)
 from django.http import FileResponse, Http404
 from django.shortcuts import get_object_or_404
 from django.views import View
@@ -18,12 +19,10 @@ class UnitViewSet(ModelViewSet):
     permission_classes = [permissions.IsAdminUser]
 
 
-
 class LessonViewSet(ModelViewSet):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
     permission_classes = [permissions.IsAdminUser]
-
 
 
 class StrategyLessonViewSet(ModelViewSet):
@@ -32,12 +31,10 @@ class StrategyLessonViewSet(ModelViewSet):
     permission_classes = [permissions.IsAdminUser]
 
 
-
 class StrategyCourseViewSet(ModelViewSet):
     queryset = StrategyCourse.objects.all()
     serializer_class = StrategyCourseSerializer
     permission_classes = [permissions.IsAdminUser]
-
 
 
 class DownloadDocumentView(View):

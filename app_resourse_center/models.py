@@ -23,6 +23,4 @@ class Document(models.Model):
     description = models.CharField(max_length=250)
 
     def __str__(self) -> str:
-        return f'{self.id}'
-
-
+        return f"{self.id}"

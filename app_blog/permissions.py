@@ -1,7 +1,6 @@
 from rest_framework import permissions
 
 
-
 class IsModeratorOrReadOnly(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
         # Allow read-only permission for non-moderator users

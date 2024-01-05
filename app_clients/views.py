@@ -7,11 +7,7 @@ from django.contrib.auth import login, authenticate
 
 from .models import Client
 from .permissions import IsClientOrAdmin
-from .serializers import (
-    ClientSerializer,
-    LoginClientSerializer,
-)
-
+from .serializers import ClientSerializer, LoginClientSerializer, ConfirmEmailSerializer
 
 
 class LoginClientView(generics.GenericAPIView):
@@ -61,6 +57,8 @@ class LoginClientView(generics.GenericAPIView):
 
 
 class ConfirmEmailView(generics.GenericAPIView):
+    serializer_class = ConfirmEmailSerializer
+
     @staticmethod
     def get(request, token):
         try:
@@ -88,7 +86,6 @@ class ConfirmEmailView(generics.GenericAPIView):
             )
 
 
-
 class RegisterClientView(generics.CreateAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
@@ -110,7 +107,6 @@ class RegisterClientView(generics.CreateAPIView):
         )
 
 
-
 class ClientListView(generics.ListAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
@@ -120,12 +116,10 @@ class ClientListView(generics.ListAPIView):
 class ClientUpdateView(generics.RetrieveUpdateAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
-    permission_classes =  [IsClientOrAdmin]
+    permission_classes = [IsClientOrAdmin]
 
 
 class ClientDeleteView(generics.DestroyAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
-    permission_classes =  [permissions.IsAdminUser]
-
-    
+    permission_classes = [permissions.IsAdminUser]

@@ -3,4 +3,3 @@ from .models import *
 
 admin.site.register(CommentCourse)
 admin.site.register(CommentDocument)
-

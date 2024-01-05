@@ -8,14 +8,13 @@ from .serializers import (
     CourseSerializers,
 )
 
+
 class CategoryViewSet(ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     pagination_class = CustomPageNumberPagination
     permission_classes = [permissions.IsAdminUser]
-    lookup_field = 'pk'
-
-
+    lookup_field = "pk"
 
 
 class CourseViewSet(ModelViewSet):
@@ -23,5 +22,4 @@ class CourseViewSet(ModelViewSet):
     serializer_class = CourseSerializers
     pagination_class = CustomPageNumberPagination
     permission_classes = [permissions.IsAdminUser]
-    lookup_field = 'pk'
-
+    lookup_field = "pk"

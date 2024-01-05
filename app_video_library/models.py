@@ -6,15 +6,9 @@ class Category(models.Model):
     title = models.CharField(max_length=250)
     description = models.CharField(max_length=255)
     image = models.ImageField()
-    
-
-
-   
 
     def __str__(self):
-        return str(f'{self.title}')
-
-
+        return str(f"{self.title}")
 
 
 class Courses(models.Model):
@@ -23,6 +17,4 @@ class Courses(models.Model):
     image = models.ImageField()
 
     def __str__(self):
-        return str(f'{self.title}')
-
-    
+        return str(f"{self.title}")

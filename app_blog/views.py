@@ -1,69 +1,72 @@
-from .models import Post, Post_list, Module
-from .serializers import PostSerializer, PostListSerializer, ModuleSerializer
+from rest_framework import generics
+from rest_framework.response import Response
+from rest_framework.filters import SearchFilter
+from rest_framework import permissions
+
+from .models import Post, Post_list, Module, Hashtag
+from .serializers import (
+    PostSerializer,
+    PostListSerializer,
+    ModuleSerializer,
+    HashtagSerializer,
+)
 from .paginations import CustomPostPagination
 from .permissions import IsModeratorOrReadOnly
 
-from rest_framework.response import Response
-from rest_framework import generics
-from rest_framework import permissions
 
 from django_filters.rest_framework import DjangoFilterBackend
 
+
 class PostListCreateView(generics.ListCreateAPIView):
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['hashtags__name']
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    permission_classes = [permissions.IsAdminUser]
+    permission_classes = [IsModeratorOrReadOnly, permissions.IsAuthenticated]
 
     def get(self, request):
-        # Your implementation here
         return Response("Success")
+
+
 class PostRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = [IsModeratorOrReadOnly]
 
     def get(self, request):
-        # Your implementation here
         return Response("Success")
-    
-class PostListListCiew(generics.ListAPIView):
-    filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['hashtags__name']
+
+
+class PostListListCreateView(generics.ListCreateAPIView):
+    filter_backends = [SearchFilter]
     queryset = Post_list.objects.all()
     serializer_class = PostListSerializer
     pagination_class = CustomPostPagination
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [IsModeratorOrReadOnly, permissions.IsAuthenticated]
 
-    def get(self, request):
-        # Your implementation here
-        return Response("Success")
+    def filter_queryset(self, queryset):
+        queryset = super().filter_queryset(queryset)
+        query = self.request.query_params.get("search", None)
+        if query:
+            queryset = queryset.filter(hashtags__name__icontains=query)
+        return queryset
+
 
 class PostListRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post_list.objects.all()
     serializer_class = PostListSerializer
-    permission_classes = [IsModeratorOrReadOnly, permissions.IsAdminUser]
+    permission_classes = [IsModeratorOrReadOnly]
 
-    def get(self, request):
-        # Your implementation here
+    def post(self, request):
         return Response("Success")
-    
 
 
 class ModuleListCreateView(generics.ListCreateAPIView):
     queryset = Module.objects.all()
     serializer_class = ModuleSerializer
-    permission_classes = [IsModeratorOrReadOnly, permissions.IsAdminUser]
+    permission_classes = [IsModeratorOrReadOnly, permissions.IsAuthenticated]
 
     def get(self, request):
-        # Your implementation here
         return Response("Success")
-
-class ModuleListView(generics.ListAPIView):
-    queryset = Module.objects.all()
-    serializer_class = ModuleSerializer
-    permission_classes = [permissions.IsAuthenticated]
 
 
 class ModuleRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
@@ -71,6 +74,17 @@ class ModuleRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ModuleSerializer
     permission_classes = [IsModeratorOrReadOnly]
 
-    def get(self, request):
-        # Your implementation here
+    def post(self, request):
         return Response("Success")
+
+
+class HashtagListCreateView(generics.ListCreateAPIView):
+    queryset = Hashtag.objects.all()
+    serializer_class = HashtagSerializer
+    filter_backends = [SearchFilter]
+    search_fields = ["name"]
+
+
+class HashtagRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Hashtag.objects.all()
+    serializer_class = HashtagSerializer

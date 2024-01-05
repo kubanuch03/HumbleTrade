@@ -1,4 +1,3 @@
-
 from decouple import config
 
 from django.contrib.auth.hashers import make_password
@@ -6,12 +5,13 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import send_mail
 from django.urls import reverse
 from django.utils.crypto import get_random_string
-from django.contrib.auth import authenticate
 
-from rest_framework.exceptions import AuthenticationFailed
 from rest_framework import serializers
 from .models import Client
 
+
+class ConfirmEmailSerializer(serializers.Serializer):
+    token = serializers.CharField()
 
 
 class ClientSerializer(serializers.ModelSerializer):
@@ -33,6 +33,7 @@ class ClientSerializer(serializers.ModelSerializer):
             "password",
             "password2",
         )
+
     def validate(self, attrs):
         if attrs["password"] != attrs["password2"]:
             raise serializers.ValidationError(
@@ -68,6 +69,7 @@ class ClientSerializer(serializers.ModelSerializer):
 
         return client
 
+
 class LoginClientSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(required=True)
     password = serializers.CharField(write_only=True, required=True)
@@ -75,5 +77,3 @@ class LoginClientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Client
         fields = ("email", "password")
-    
-  

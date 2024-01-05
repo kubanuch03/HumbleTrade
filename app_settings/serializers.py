@@ -1,11 +1,3 @@
-
-from decouple import config
-
-from django.contrib.auth.hashers import make_password
-from django.contrib.sites.shortcuts import get_current_site
-from django.core.mail import send_mail
-from django.urls import reverse
-from django.utils.crypto import get_random_string
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_str
 from django.shortcuts import get_object_or_404
@@ -13,6 +5,7 @@ from django.utils.http import urlsafe_base64_decode
 
 from rest_framework import serializers
 from app_clients.models import Client
+
 
 class ClientProfileSerializer(serializers.ModelSerializer):
     class Meta:
@@ -35,11 +28,7 @@ class ClientProfileSerializer(serializers.ModelSerializer):
             "instogram",
             "twitter",
             "password",
-            # "password2"
         ]
-
-
-
 
 
 class ResetPasswordConfirmSerializer(serializers.Serializer):
