@@ -103,14 +103,13 @@ WSGI_APPLICATION = "config.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "trader_db",
-        "USER": "hello",
-        "PASSWORD": "1",
-        "HOST": "localhost",
-        "PORT": 5432,
-
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('POSTGRES_DB'),
+        'USER': config('POSTGRES_USER'),
+        'PASSWORD': config('POSTGRES_PASSWORD'),
+        'HOST': config('POSTGRES_HOST'),
+        'PORT': config('POSTGRES_PORT'),
     }
 }
 
@@ -160,17 +159,42 @@ AUTH_USER_MODEL = "app_users.CustomUser"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-# EMAIL_BACKEND = config("EMAIL_BACKEND")
-# EMAIL_HOST = config("EMAIL_HOST")
-# EMAIL_PORT = config("EMAIL_PORT")
-# EMAIL_USE_TLS = config("EMAIL_USE_TLS")
+SPECTACULAR_SETTINGS = {
+    'TITILE': "BLOG APIS",
+    'DESCRIPTION': "Simple blog app in rest framework",
+    'VERSION' : "1.0",
+    
+}
+CORS_ALLOW_METHODS = [
+    "GET",
+    "POST",
+    "PUT",
+    "PATCH",
+    "DELETE",
+    "OPTIONS",
+]
 
-# EMAIL_HOST_USER = config("EMAIL_HOST_USER")
-# EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
+CORS_ALLOWED_ORIGINS = [
+    "http://164.92.83.50:8000",
+    "http://localhost:3000",
+]
 
-# EMAIL_SERVER = config("EMAIL_SERVER")
-# DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL")
-# EMAIL_ADMIN = config("EMAIL_ADMIN")
+CORS_ALLOW_ORIGINS = [
+    "http://localhost:3000",
+    "http://164.92.83.50:8000",
+]
+
+EMAIL_BACKEND = config("EMAIL_BACKEND")
+EMAIL_HOST = config("EMAIL_HOST")
+EMAIL_PORT = config("EMAIL_PORT")
+EMAIL_USE_TLS = config("EMAIL_USE_TLS")
+
+EMAIL_HOST_USER = config("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
+
+EMAIL_SERVER = config("EMAIL_SERVER")
+DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL")
+EMAIL_ADMIN = config("EMAIL_ADMIN")
 
 
 # JWT Config
