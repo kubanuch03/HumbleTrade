@@ -2,8 +2,7 @@ from django.urls import path
 from .views import *
 
 
-
-app_name = 'blog'
+app_name = "blog"
 urlpatterns = [
     path("posts/", PostListCreateView.as_view(), name="post-list-create"),
     path(

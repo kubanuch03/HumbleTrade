@@ -103,13 +103,13 @@ WSGI_APPLICATION = "config.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('POSTGRES_DB'),
-        'USER': config('POSTGRES_USER'),
-        'PASSWORD': config('POSTGRES_PASSWORD'),
-        'HOST': config('POSTGRES_HOST'),
-        'PORT': config('POSTGRES_PORT'),
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": config("POSTGRES_DB"),
+        "USER": config("POSTGRES_USER"),
+        "PASSWORD": config("POSTGRES_PASSWORD"),
+        "HOST": config("POSTGRES_HOST"),
+        "PORT": config("POSTGRES_PORT"),
     }
 }
 
@@ -160,10 +160,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 SPECTACULAR_SETTINGS = {
-    'TITILE': "BLOG APIS",
-    'DESCRIPTION': "Simple blog app in rest framework",
-    'VERSION' : "1.0",
-    
+    "TITILE": "BLOG APIS",
+    "DESCRIPTION": "Simple blog app in rest framework",
+    "VERSION": "1.0",
 }
 CORS_ALLOW_METHODS = [
     "GET",

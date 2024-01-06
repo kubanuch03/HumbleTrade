@@ -14,17 +14,21 @@ from django.views import View
 from rest_framework.generics import CreateAPIView, ListAPIView
 from rest_framework.permissions import AllowAny
 
+
 class CategoryCreateApiView(CreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializers
     pagination_class = CustomPageNumberPagination
     permission_classes = [permissions.IsAdminUser]
 
+
 class CategoryListApiView(ListAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializers
     pagination_class = CustomPageNumberPagination
-    permission_classes = [AllowAny, ]
+    permission_classes = [
+        AllowAny,
+    ]
 
 
 class CategoryDeleteApiView(APIView):
@@ -74,7 +78,9 @@ class DocumentListApiView(ListAPIView):
     queryset = Document.objects.all()
     serializer_class = DocumentSerializer
     pagination_class = CustomPageNumberPagination
-    permission_classes = [AllowAny,]
+    permission_classes = [
+        AllowAny,
+    ]
 
 
 class DocumentDeleteApiView(APIView):
