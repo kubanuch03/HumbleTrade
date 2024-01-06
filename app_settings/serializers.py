@@ -30,6 +30,11 @@ class ClientProfileSerializer(serializers.ModelSerializer):
             "password",
         ]
 
+class RequestPasswordResetSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+
+    class Meta:
+        fields = ['email']
 
 class ResetPasswordConfirmSerializer(serializers.Serializer):
     password = serializers.CharField(write_only=True, required=True)

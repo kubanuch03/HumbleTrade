@@ -6,7 +6,7 @@ from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework import generics
 
-from .serializers import ClientProfileSerializer, ResetPasswordConfirmSerializer
+from .serializers import ClientProfileSerializer, ResetPasswordConfirmSerializer,RequestPasswordResetSerializer
 from .send_email import send_password_reset_email
 from app_clients.models import Client
 
@@ -27,7 +27,7 @@ class ClientProfileView(RetrieveUpdateAPIView):
 
 class RequestPasswordResetView(APIView):
     permission_classes = [permissions.AllowAny]
-
+    serializer_class = RequestPasswordResetSerializer
     @csrf_exempt
     def post(self, request, *args, **kwargs):
         email = request.data.get("email")

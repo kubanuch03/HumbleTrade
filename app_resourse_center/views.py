@@ -29,6 +29,7 @@ class CategoryListApiView(ListAPIView):
 
 class CategoryDeleteApiView(APIView):
     permission_classes = [permissions.IsAdminUser]
+    serializer_class = CategorySerializers
 
     def get_object(self, pk):
         try:
@@ -45,6 +46,7 @@ class CategoryDeleteApiView(APIView):
 
 class CategoryPutApiView(APIView):
     permission_classes = [permissions.IsAdminUser]
+    serializer_class = CategorySerializers
 
     def get_object(self, pk):
         try:
@@ -77,6 +79,7 @@ class DocumentListApiView(ListAPIView):
 
 class DocumentDeleteApiView(APIView):
     permission_classes = [permissions.IsAdminUser]
+    serializer_class = CategorySerializers
 
     def get_object(self, pk):
         try:
@@ -93,6 +96,7 @@ class DocumentDeleteApiView(APIView):
 
 class DocumetPutApiView(APIView):
     permission_classes = [permissions.IsAdminUser]
+    serializer_class = CategorySerializers
 
     def get_object(self, pk):
         try:
