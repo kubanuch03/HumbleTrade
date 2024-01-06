@@ -4,7 +4,6 @@ from .serializer import CategorySerializers, DocumentSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.generics import ListCreateAPIView
 from rest_framework import permissions
 
 from django.http import Http404
@@ -12,13 +11,20 @@ from app_video_library.pagination import CustomPageNumberPagination
 from django.http import FileResponse, Http404
 from django.shortcuts import get_object_or_404
 from django.views import View
+from rest_framework.generics import CreateAPIView, ListAPIView
+from rest_framework.permissions import AllowAny
 
-
-class CategoryCreateApiView(ListCreateAPIView):
+class CategoryCreateApiView(CreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializers
     pagination_class = CustomPageNumberPagination
     permission_classes = [permissions.IsAdminUser]
+
+class CategoryListApiView(ListAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializers
+    pagination_class = CustomPageNumberPagination
+    permission_classes = [AllowAny, ]
 
 
 class CategoryDeleteApiView(APIView):
@@ -55,11 +61,18 @@ class CategoryPutApiView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class DocumentCreateApiView(ListCreateAPIView):
+class DocumentCreateApiView(CreateAPIView):
     queryset = Document.objects.all()
     serializer_class = DocumentSerializer
     pagination_class = CustomPageNumberPagination
     permission_classes = [permissions.IsAdminUser]
+
+
+class DocumentListApiView(ListAPIView):
+    queryset = Document.objects.all()
+    serializer_class = DocumentSerializer
+    pagination_class = CustomPageNumberPagination
+    permission_classes = [AllowAny,]
 
 
 class DocumentDeleteApiView(APIView):

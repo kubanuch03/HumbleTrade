@@ -1,14 +1,16 @@
 from django.urls import path
-from .views import *
+from app_resourse_center.views import *
 
 
 urlpatterns = [
-    
-    path("category/create/list/", CategoryCreateApiView.as_view()),
+
+    path("category/create/", CategoryCreateApiView.as_view()),
+    path("category/list/", CategoryListApiView.as_view()),
     path("category/delete/<int:pk>/", CategoryDeleteApiView.as_view()),
     path("category/put/<int:pk>/", CategoryPutApiView.as_view()),
 
-    path("document/create/list/", DocumentCreateApiView.as_view()),
+    path("document/create/", DocumentCreateApiView.as_view()),
+    path("document/list/", DocumentListApiView.as_view()),
     path("document/delete/<int:pk>/", DocumentDeleteApiView.as_view()),
     path("document/put/<int:pk>/", DocumetPutApiView.as_view()),
 
