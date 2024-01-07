@@ -7,7 +7,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 WORKDIR /usr/src/app
 
-COPY requirements.txt ./
+COPY requirement.txt ./
 RUN pip install --no-cache-dir -r requirement.txt
 
 RUN mkdir static && mkdir media
