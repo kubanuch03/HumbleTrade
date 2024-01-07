@@ -34,6 +34,8 @@ urlpatterns = [
     path("trader/academy/", include("app_trader_academy.urls")),
     path("blog/", include("app_blog.urls")),
     path("comment/", include("app_comment.urls")),
+    path("reviews/", include("app_reviews.urls")),
+
     # swagger
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path("", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"),

@@ -8,26 +8,16 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ("app_comment", "0001_initial"),
         ("app_clients", "0001_initial"),
-        ("app_blog", "0001_initial"),
+        ("app_reviews", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name="comment",
-            name="author",
+            model_name="review",
+            name="client",
             field=models.ForeignKey(
                 on_delete=django.db.models.deletion.CASCADE, to="app_clients.client"
-            ),
-        ),
-        migrations.AddField(
-            model_name="comment",
-            name="post",
-            field=models.ForeignKey(
-                on_delete=django.db.models.deletion.CASCADE,
-                related_name="comments",
-                to="app_blog.post",
             ),
         ),
     ]
